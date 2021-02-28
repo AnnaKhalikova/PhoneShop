@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "j9oESoAckX8gbVquXP/9Fvm9FcwCifveWHKuMh0m1ew/4jtX2Qk6Lhp/SD9dQXGiJL3J1iQMADP3PrcwR1u6qw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\aikha\\Downloads\\.NET\\Phone Shop\\Phone Shop.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aikha\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
