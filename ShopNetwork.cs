@@ -6,14 +6,6 @@ namespace Phone_Shop
 {
     class ShopNetwork
     {
-        public List<Shop> shops;
-        public ShopNetwork()
-        {
-            List<Shop> shops = new List<Shop>();
-        }
-        public void AddNewShop(string shopName)
-        {
-            shops.Add(new Shop(shopName));
-        }
+
     }
 }

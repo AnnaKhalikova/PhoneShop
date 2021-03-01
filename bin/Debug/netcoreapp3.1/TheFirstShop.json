@@ -2,31 +2,31 @@
     {
         "Model": "iPhone 7",
         "Brand": "Apple",
-        "Type": "OperatingSystemType.iOS",
+        "Type": "iOS",
         "IsAvailable": "true"
     },
     {
         "Model": "Xiaomi Mi A3",
         "Brand": "Xiaomi",
-        "Type": "OperatingSystemType.Android",
+        "Type": "Android",
         "IsAvailable": "true"
     },
     {
         "Model": "Redmi 9T",
         "Brand": "Xiaomi Redmi",
-        "Type": "OperatingSystemType.Android",
+        "Type": "Android",
         "IsAvailable": "false"
     },
     {
         "Model": "Huawei P40",
         "Brand": "Huawei",
-        "Type": "OperatingSystemType.Android",
+        "Type": "Android",
         "IsAvailable": "true"
     },
     {
         "Model": "iPhone XR",
         "Brand": "Apple",
-        "Type": "OperatingSystemType.iOS",
+        "Type": "iOS",
         "IsAvailable": "false"
     }
   ]

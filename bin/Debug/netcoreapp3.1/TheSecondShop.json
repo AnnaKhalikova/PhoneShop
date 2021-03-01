@@ -1,0 +1,33 @@
+{"d": [
+    {
+        "Model": "iPhone 8",
+        "Brand": "Apple",
+        "Type": "iOS",
+        "IsAvailable": "true"
+    },
+    {
+        "Model": "Xiaomi Mi A1",
+        "Brand": "Xiaomi",
+        "Type": "Android",
+        "IsAvailable": "true"
+    },
+    {
+        "Model": "Redmi 8",
+        "Brand": "Xiaomi Redmi",
+        "Type": "Android",
+        "IsAvailable": "false"
+    },
+    {
+        "Model": "Huawei P40 Lite",
+        "Brand": "Huawei",
+        "Type": "Android",
+        "IsAvailable": "true"
+    },
+    {
+        "Model": "iPhone 11 Pro",
+        "Brand": "Apple",
+        "Type": "iOS",
+        "IsAvailable": "false"
+    }
+  ]
+}

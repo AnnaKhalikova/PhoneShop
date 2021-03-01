@@ -10,20 +10,19 @@ namespace Phone_Shop
     {
         static void Main(string[] args)
         {
-            string path1 = @"~\TheFirstShop.json";
-            string path2 = @"~\TheSecondShop.json";
+            string path1 = @"C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\TheFirstShop.json";
+            string path2 = @"C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\TheSecondShop.json";
 
             Console.WriteLine("Hello! You at the phone shop!");
             IList<Phone> phonesForFirstShop = ReadJSONFromFile(path1);
             IList<Phone> phonesForSecondShop = ReadJSONFromFile(path2);
+            List<Shop> shopNetwork = new List<Shop>();
 
-            ShopNetwork shopNetwork = new ShopNetwork();
-            shopNetwork.AddNewShop("PhoneStore1");
-            shopNetwork.AddNewShop("PhoneStore2");
-            foreach(var shop in shopNetwork.shops)
-            {
-                FillTheListOfPhones(phonesForFirstShop, shop);
-            }
+            shopNetwork.Add(new Shop("PhoneStore1"));
+            shopNetwork.Add(new Shop("PhoneStore2"));
+
+            FillTheListOfPhones(phonesForFirstShop, shopNetwork[0]);
+            FillTheListOfPhones(phonesForSecondShop, shopNetwork[1]);
 
             string modelToFind = null;
             Console.WriteLine("Please, enter a model, that you want to find: ");
@@ -31,7 +30,7 @@ namespace Phone_Shop
             int codeMessage = 0;
             do
             {
-                foreach (var shop in shopNetwork.shops)
+                foreach (var shop in shopNetwork)
                 {
                     codeMessage = ShowInfo(shop.FindPhone(modelToFind));
                     if (codeMessage != 0)
@@ -42,8 +41,6 @@ namespace Phone_Shop
                 }
             } while (codeMessage == 1 || codeMessage == 2);
             
-            
-
         }
         static IList<Phone> ReadJSONFromFile(string path)
         {

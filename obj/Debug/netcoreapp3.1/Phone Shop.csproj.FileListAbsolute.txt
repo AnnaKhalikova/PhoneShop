@@ -1,0 +1,15 @@
+C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\Phone Shop.exe
+C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\Phone Shop.deps.json
+C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\Phone Shop.runtimeconfig.json
+C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\Phone Shop.runtimeconfig.dev.json
+C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\Phone Shop.dll
+C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\Phone Shop.pdb
+C:\Users\aikha\Downloads\.NET\Phone Shop\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.csprojAssemblyReference.cache
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.AssemblyInfoInputs.cache
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.AssemblyInfo.cs
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.csproj.CoreCompileInputs.cache
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.csproj.CopyComplete
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.dll
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.pdb
+C:\Users\aikha\Downloads\.NET\Phone Shop\obj\Debug\netcoreapp3.1\Phone Shop.genruntimeconfig.cache

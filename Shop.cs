@@ -18,7 +18,6 @@ namespace Phone_Shop
         {
             Phones.Add(new Phone(model, brand, type, isAvailable, shop));
         }
-        //remade search method with Dictionary structure
         public Phone FindPhone(string model)
         {
             Phone phones = null;
