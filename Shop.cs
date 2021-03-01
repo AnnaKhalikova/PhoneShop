@@ -18,5 +18,15 @@ namespace Phone_Shop
         {
             Phones.Add(new Phone(model, brand, type, isAvailable, shop));
         }
+        public int CalculatePhonesByType(OperatingSystemType type)
+        {
+            int amount = 0;
+            foreach(var phone in Phones)
+            {
+                if (phone.Type == type && phone.IsAvailable == true)
+                   amount++;
+            }
+            return amount;
+        }
     }
 }

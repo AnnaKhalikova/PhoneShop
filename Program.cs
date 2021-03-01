@@ -45,6 +45,12 @@ namespace Phone_Shop
             }
             
         }
+        static void ShowInfoAboutShop(Shop shop)
+        {
+            Console.WriteLine("Shop name: " + shop.ShopName);
+            Console.WriteLine("Amount of available iOS phones: " + shop.CalculatePhonesByType(OperatingSystemType.iOS));
+            Console.WriteLine("Amount of available Android phones: " + shop.CalculatePhonesByType(OperatingSystemType.Android));
+        }
         static Phone FindPhone(string model, Shop shop)
         {
             Phone phone = null;
