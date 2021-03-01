@@ -30,6 +30,7 @@ namespace Phone_Shop
             int codeMessage = 1;
             while (codeMessage == 1 || codeMessage == 2)
             {
+                
                 foreach (var shop in shopNetwork)
                 {
                     List<Phone> phones = new List<Phone>();
@@ -44,8 +45,7 @@ namespace Phone_Shop
                         int shopReturnsCode = ChooseShopAndOrderPhone(phones[0], shopNetwork, shopName);
                         do
                         {
-                                            
-
+                                           
                             if (shopReturnsCode == 1)
                             {
                                 Console.WriteLine("Спасибо, что выбрали нас");
@@ -57,14 +57,14 @@ namespace Phone_Shop
                             }                            
                         } while (shopReturnsCode != 1);
 
-
+                        if (codeMessage == -1 || codeMessage == -2)
+                        {
+                            Console.WriteLine("Пожалуйста, повторите ввод модели телефона для поиска");
+                            modelToFind = Console.ReadLine();
+                        }
                     }                   
                     
-                    if (codeMessage == 1 || codeMessage == 2)
-                    {
-                        Console.WriteLine("Пожалуйста, повторите ввод модели телефона для поиска");
-                        modelToFind = Console.ReadLine();
-                    }
+                    
 
                    
                 }
@@ -123,7 +123,7 @@ namespace Phone_Shop
             {
                 Console.WriteLine("Введенный Вами товар не найден");
                 //Error code 1
-                return 1;
+                return -1;
             }
             foreach (var phone in phones)
             {
@@ -131,7 +131,7 @@ namespace Phone_Shop
                 {
                     Console.WriteLine("Данный товар отсутствует на складе");
                     //Error code 2
-                    return 2;
+                    return -2;
                 }
                 else
                 {
