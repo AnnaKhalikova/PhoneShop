@@ -34,16 +34,45 @@ namespace Phone_Shop
                 {
                     List<Phone> phones = new List<Phone>();
                     if(FindPhone(modelToFind, shop) != null)
+                    {
                         phones.Add(FindPhone(modelToFind, shop));
-                    codeMessage = ShowInfo(phones);
+                        codeMessage = ShowInfo(phones);
+
+                        string shopName = null;
+                        Console.WriteLine($"В каком магазине вы хотите приобрести {phones[0].Model}");
+                        shopName = Console.ReadLine();
+                        int shopReturnsCode = ChooseShopAndOrderPhone(phones[0], shopNetwork, shopName);
+                        do
+                        {
+                                            
+
+                            if (shopReturnsCode == 1)
+                            {
+                                Console.WriteLine("Спасибо, что выбрали нас");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Повторите ввод названия магазина:");
+                                shopName = Console.ReadLine();
+                            }                            
+                        } while (shopReturnsCode != 1);
+
+
+                    }                   
+                    
                     if (codeMessage == 1 || codeMessage == 2)
                     {
                         Console.WriteLine("Пожалуйста, повторите ввод модели телефона для поиска");
                         modelToFind = Console.ReadLine();
                     }
+
+                   
                 }
             }
             
+
+
+
         }
         static void ShowInfoAboutShop(Shop shop)
         {
@@ -84,11 +113,12 @@ namespace Phone_Shop
 
             for (int i = 0; i < phones.Count; i++)
             {
-                shop.AddPhone((string)phones[i].Model, (string)phones[i].Brand, (OperatingSystemType)phones[i].Type, (bool)phones[i].IsAvailable, shop);
+                shop.AddPhone((string)phones[i].Model, (string)phones[i].Brand,(double)phones[i].Price, (OperatingSystemType)phones[i].Type, (bool)phones[i].IsAvailable, shop);
             }
         }
         static int ShowInfo(List<Phone> phones)
         {
+            int indexOfPhone = 0;
             if (phones == null)
             {
                 Console.WriteLine("Введенный Вами товар не найден");
@@ -97,16 +127,48 @@ namespace Phone_Shop
             }
             foreach (var phone in phones)
             {
-                if(phone != null && phone.IsAvailable == false)
+                if (phone != null && phone.IsAvailable == false)
                 {
                     Console.WriteLine("Данный товар отсутствует на складе");
                     //Error code 2
                     return 2;
                 }
                 else
+                {
                     Console.WriteLine($"Model: {phone.Model}\n Brand: {phone.Brand}\n Available at the shop: {phone.ShopPlace.ShopName} ");
+                    indexOfPhone = phones.IndexOf(phone);
+                }
+                    
             }
-            //Return 0 if all work perfect
+            //Return index of finded phone if all work perfect
+            return indexOfPhone;
+        }
+        
+        static int ChooseShopAndOrderPhone(Phone phone, List<Shop> shops, string shopName)
+        {
+            
+            foreach(var shop in shops)
+            {
+                if(shop.ShopName == shopName)
+                {
+                    if (FindPhone(phone.Model, shop) != null)
+                    {
+                        Console.WriteLine($"Заказ {phone.Model} на сумму {phone.Price} успешно оформлен!");
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Такой модели в магазине {shop.ShopName} нет");
+                    }
+                    return 1;
+                }
+                else
+                {
+                    Console.WriteLine($"Магазин {shop.ShopName} не найден");
+
+                }
+                
+            }
             return 0;
         }
     }

@@ -14,9 +14,9 @@ namespace Phone_Shop
             ShopName = shopName;
             Phones = new List<Phone>();
         }
-        public void AddPhone(string model, string brand, OperatingSystemType type, bool isAvailable, Shop shop)
+        public void AddPhone(string model, string brand,double price, OperatingSystemType type, bool isAvailable, Shop shop)
         {
-            Phones.Add(new Phone(model, brand, type, isAvailable, shop));
+            Phones.Add(new Phone(model, brand, price, type, isAvailable, shop));
         }
         public int CalculatePhonesByType(OperatingSystemType type)
         {

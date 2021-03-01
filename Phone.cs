@@ -13,6 +13,7 @@ namespace Phone_Shop
     {
         public string Model { get; set; }
         public string Brand { get; set; }
+        public double Price { get; set; }
         public bool IsAvailable { get; set; }
         public Shop ShopPlace { get; set; }
         public OperatingSystemType Type { get; set; }
@@ -21,10 +22,11 @@ namespace Phone_Shop
         {
 
         }
-        public Phone(string model, string brand, OperatingSystemType type, bool isAvailable, Shop shop)
+        public Phone(string model, string brand, double price, OperatingSystemType type, bool isAvailable, Shop shop)
         {
             Model = model;
             Brand = brand;
+            Price = price;
             Type = type;
             IsAvailable = isAvailable;
             ShopPlace = shop; 
