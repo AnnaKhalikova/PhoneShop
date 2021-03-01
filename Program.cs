@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Phone_Shop
@@ -9,19 +10,84 @@ namespace Phone_Shop
     {
         static void Main(string[] args)
         {
+            string path1 = @"~\TheFirstShop.json";
+            string path2 = @"~\TheSecondShop.json";
+
             Console.WriteLine("Hello! You at the phone shop!");
-        }
-        static JObject ReadJSONFromFile(string path)
-        {
-            JObject o2;
-            // read JSON directly from a file
-            using (StreamReader file = File.OpenText(@"c:\videogames.json"))
-            using (JsonTextReader reader = new JsonTextReader(file))
+            IList<Phone> phonesForFirstShop = ReadJSONFromFile(path1);
+            IList<Phone> phonesForSecondShop = ReadJSONFromFile(path2);
+
+            ShopNetwork shopNetwork = new ShopNetwork();
+            shopNetwork.AddNewShop("PhoneStore1");
+            shopNetwork.AddNewShop("PhoneStore2");
+            foreach(var shop in shopNetwork.shops)
             {
-                o2 = (JObject)JToken.ReadFrom(reader);
+                FillTheListOfPhones(phonesForFirstShop, shop);
             }
 
-            return o2;
+            string modelToFind = null;
+            Console.WriteLine("Please, enter a model, that you want to find: ");
+            modelToFind = Console.ReadLine();
+            int codeMessage = 0;
+            do
+            {
+                foreach (var shop in shopNetwork.shops)
+                {
+                    codeMessage = ShowInfo(shop.FindPhone(modelToFind));
+                    if (codeMessage != 0)
+                    {
+                        Console.WriteLine("Пожалуйста, повторите ввод модели телефона для поиска");
+                        modelToFind = Console.ReadLine();
+                    }
+                }
+            } while (codeMessage == 1 || codeMessage == 2);
+            
+            
+
+        }
+        static IList<Phone> ReadJSONFromFile(string path)
+        {
+            JObject o;
+            // read JSON directly from a file
+            using (StreamReader file = File.OpenText(@path))
+            using (JsonTextReader reader = new JsonTextReader(file))
+            {
+                o = (JObject)JToken.ReadFrom(reader);
+            }
+            JArray a = (JArray)o["d"];
+
+            IList<Phone> phones = a.ToObject<IList<Phone>>();
+
+            return phones;
+        }
+        static void FillTheListOfPhones(IList<Phone> phones, Shop shop)
+        {
+
+            for (int i = 0; i < phones.Count; i++)
+            {
+                shop.AddPhone((string)phones[i].Model, (string)phones[i].Brand, (OperatingSystemType)phones[i].Type, (bool)phones[i].IsAvailable, shop);
+            }
+        }
+        static int ShowInfo(Phone phone)
+        {
+            //Error code 1
+            if (phone == null)
+            {
+                Console.WriteLine("Введенный Вами товар не найден");
+                return 1;
+            }
+            //Error code 2
+            else if (phone != null == false)
+            {
+                Console.WriteLine("Данный товар отсутствует на складе");
+                return 2;
+            }
+            else
+            {
+                Console.WriteLine($"Model: {phone.Model}\n Brand: {phone.Brand}\n Available at the shop: {phone.ShopPlace.ShopName} ");
+            }
+            //Return 0 if all work perfect
+            return 0;
         }
     }
 }

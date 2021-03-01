@@ -6,14 +6,14 @@ namespace Phone_Shop
 {
     class ShopNetwork
     {
-        List<Shop> shops;
+        public List<Shop> shops;
         public ShopNetwork()
         {
             List<Shop> shops = new List<Shop>();
         }
-        void AddNewShop()
+        public void AddNewShop(string shopName)
         {
-            shops.Add(new Shop());
+            shops.Add(new Shop(shopName));
         }
     }
 }
