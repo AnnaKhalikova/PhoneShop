@@ -42,16 +42,17 @@ namespace Phone_Shop
                         string shopName = null;
                         Console.WriteLine($"В каком магазине вы хотите приобрести {phones[0].Model}");
                         shopName = Console.ReadLine();
-                        int shopReturnsCode = ChooseShopAndOrderPhone(phones[0], shopNetwork, shopName);
+                        int shopReturnsCode = 0;
                         do
                         {
-                                           
+                            shopReturnsCode = ChooseShopAndOrderPhone(phones[0], shopNetwork, shopName);
                             if (shopReturnsCode == 1)
                             {
                                 Console.WriteLine("Спасибо, что выбрали нас");
                             }
                             else
                             {
+                                Console.WriteLine($"Магазин {shop.ShopName} не найден");
                                 Console.WriteLine("Повторите ввод названия магазина:");
                                 shopName = Console.ReadLine();
                             }                            
@@ -154,20 +155,14 @@ namespace Phone_Shop
                     if (FindPhone(phone.Model, shop) != null)
                     {
                         Console.WriteLine($"Заказ {phone.Model} на сумму {phone.Price} успешно оформлен!");
-                        
+                        return 1;
                     }
                     else
                     {
                         Console.WriteLine($"Такой модели в магазине {shop.ShopName} нет");
                     }
-                    return 1;
-                }
-                else
-                {
-                    Console.WriteLine($"Магазин {shop.ShopName} не найден");
-
-                }
-                
+                    
+                }               
             }
             return 0;
         }
