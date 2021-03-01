@@ -32,7 +32,10 @@ namespace Phone_Shop
             {
                 foreach (var shop in shopNetwork)
                 {
-                    codeMessage = ShowInfo(shop.FindPhone(modelToFind));
+                    List<Phone> phones = new List<Phone>();
+                    if(FindPhone(modelToFind, shop) != null)
+                        phones.Add(FindPhone(modelToFind, shop));
+                    codeMessage = ShowInfo(phones);
                     if (codeMessage == 1 || codeMessage == 2)
                     {
                         Console.WriteLine("Пожалуйста, повторите ввод модели телефона для поиска");
@@ -41,6 +44,19 @@ namespace Phone_Shop
                 }
             }
             
+        }
+        static Phone FindPhone(string model, Shop shop)
+        {
+            Phone phone = null;
+            foreach (var item in shop.Phones)
+            {
+                if (item.Model == model)
+                {
+                    phone = item;
+                }
+            }
+
+            return phone;
         }
         static IList<Phone> ReadJSONFromFile(string path)
         {
@@ -65,23 +81,24 @@ namespace Phone_Shop
                 shop.AddPhone((string)phones[i].Model, (string)phones[i].Brand, (OperatingSystemType)phones[i].Type, (bool)phones[i].IsAvailable, shop);
             }
         }
-        static int ShowInfo(Phone phone)
+        static int ShowInfo(List<Phone> phones)
         {
-            //Error code 1
-            if (phone == null)
+            if (phones == null)
             {
                 Console.WriteLine("Введенный Вами товар не найден");
+                //Error code 1
                 return 1;
             }
-            //Error code 2
-            else if (phone != null == false)
+            foreach (var phone in phones)
             {
-                Console.WriteLine("Данный товар отсутствует на складе");
-                return 2;
-            }
-            else
-            {
-                Console.WriteLine($"Model: {phone.Model}\n Brand: {phone.Brand}\n Available at the shop: {phone.ShopPlace.ShopName} ");
+                if(phone != null && phone.IsAvailable == false)
+                {
+                    Console.WriteLine("Данный товар отсутствует на складе");
+                    //Error code 2
+                    return 2;
+                }
+                else
+                    Console.WriteLine($"Model: {phone.Model}\n Brand: {phone.Brand}\n Available at the shop: {phone.ShopPlace.ShopName} ");
             }
             //Return 0 if all work perfect
             return 0;

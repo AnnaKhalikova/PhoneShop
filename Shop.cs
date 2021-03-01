@@ -18,19 +18,5 @@ namespace Phone_Shop
         {
             Phones.Add(new Phone(model, brand, type, isAvailable, shop));
         }
-        public Phone FindPhone(string model)
-        {
-            Phone phones = null;
-
-            foreach (var item in Phones)
-            {
-                if (item.Model == model)
-                {
-                    phones = item;
-                }
-            }
-
-            return phones;
-        }
     }
 }
