@@ -24,56 +24,58 @@ namespace Phone_Shop
             FillTheListOfPhones(phonesForFirstShop, shopNetwork[0]);
             FillTheListOfPhones(phonesForSecondShop, shopNetwork[1]);
 
+            //Show info about shops
+            foreach(var shop in shopNetwork)
+            {
+                ShowInfoAboutShop(shop);
+            }
+
             string modelToFind = null;
             Console.WriteLine("Please, enter a model, that you want to find: ");
             modelToFind = Console.ReadLine();
-            int codeMessage = 1;
-            while (codeMessage == 1 || codeMessage == 2)
+            int codeMessage = -1;
+            while (codeMessage == -1 || codeMessage == -2)
             {
                 
                 foreach (var shop in shopNetwork)
                 {
                     List<Phone> phones = new List<Phone>();
-                    if(FindPhone(modelToFind, shop) != null)
+
+                    if (FindPhone(modelToFind, shop) != null)
                     {
                         phones.Add(FindPhone(modelToFind, shop));
                         codeMessage = ShowInfo(phones);
 
-                        string shopName = null;
-                        Console.WriteLine($"В каком магазине вы хотите приобрести {phones[0].Model}");
-                        shopName = Console.ReadLine();
-                        int shopReturnsCode = 0;
-                        do
+                        if (phones[0].IsAvailable)
                         {
-                            shopReturnsCode = ChooseShopAndOrderPhone(phones[0], shopNetwork, shopName);
-                            if (shopReturnsCode == 1)
+                            string shopName = null;
+                            Console.WriteLine($"В каком магазине вы хотите приобрести {phones[0].Model}");
+                            shopName = Console.ReadLine();
+                            int shopReturnsCode = 0;
+                            do
                             {
-                                Console.WriteLine("Спасибо, что выбрали нас");
-                            }
-                            else
-                            {
-                                Console.WriteLine($"Магазин {shop.ShopName} не найден");
-                                Console.WriteLine("Повторите ввод названия магазина:");
-                                shopName = Console.ReadLine();
-                            }                            
-                        } while (shopReturnsCode != 1);
-
+                                shopReturnsCode = ChooseShopAndOrderPhone(phones[0], shopNetwork, shopName);
+                                if (shopReturnsCode == 1)
+                                {
+                                    Console.WriteLine("Спасибо, что выбрали нас");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Магазин {shop.ShopName} не найден");
+                                    Console.WriteLine("Повторите ввод названия магазина:");
+                                    shopName = Console.ReadLine();
+                                }
+                            } while (shopReturnsCode != 1);
+                        }
+                      
                         if (codeMessage == -1 || codeMessage == -2)
                         {
                             Console.WriteLine("Пожалуйста, повторите ввод модели телефона для поиска");
                             modelToFind = Console.ReadLine();
                         }
-                    }                   
-                    
-                    
-
-                   
+                    }                                    
                 }
             }
-            
-
-
-
         }
         static void ShowInfoAboutShop(Shop shop)
         {
