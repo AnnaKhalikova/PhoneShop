@@ -27,19 +27,19 @@ namespace Phone_Shop
             string modelToFind = null;
             Console.WriteLine("Please, enter a model, that you want to find: ");
             modelToFind = Console.ReadLine();
-            int codeMessage = 0;
-            do
+            int codeMessage = 1;
+            while (codeMessage == 1 || codeMessage == 2)
             {
                 foreach (var shop in shopNetwork)
                 {
                     codeMessage = ShowInfo(shop.FindPhone(modelToFind));
-                    if (codeMessage != 0)
+                    if (codeMessage == 1 || codeMessage == 2)
                     {
                         Console.WriteLine("Пожалуйста, повторите ввод модели телефона для поиска");
                         modelToFind = Console.ReadLine();
                     }
                 }
-            } while (codeMessage == 1 || codeMessage == 2);
+            }
             
         }
         static IList<Phone> ReadJSONFromFile(string path)
